@@ -20,7 +20,7 @@ const caesarModule = (function () {
     //like it says in the strings module, i need to make sure these are all lowercase, because of the whole unicode value thing, before i split them up
       const characters = input.toLowerCase().split("")
       ///since the argument given to split is just "", i'm going to be making a new array of every single character from that message.  i figured "characters" was as good a name as any for this new array...
-      //and now that i have a new array, i'm going to use .map on it to make another new array using charodeAt
+      //and now that i have a new array of every character in lowercase, i'm going to use .map on it to make another new array called secretMessage using charCodeAt
       const secretMessage = characters.map((character) => {
         
         //a couple of google searches have led me to this resource: https://askjavascript.com/how-to-convert-string-to-char-code-in-javascript/#:~:text=Javascript%20has%20127%20characters.%20We%20get%20this%20number,at%20a%20specified%20index%20%28position%29%20in%20a%20string.
@@ -37,11 +37,13 @@ const caesarModule = (function () {
         if (ascii < 0){
           ascii += 26;
         }
-          ascii = ascii % 26;
+        
+          ascii = ascii % 26;  //without this, i cant handle letters at the end of the alphabet
           ascii += 97
           return String.fromCharCode(ascii)
         
       })
+      
       return secretMessage.join("")
       }
     
